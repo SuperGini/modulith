@@ -1,0 +1,31 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    password: 1234
+    username: ginitoru
+    url: jdbc:postgresql://localhost:5432/modulith
+
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate.generate_statistics: true #to activate hibernate statistics
+#      hibernate.format_sql: true # formating the sql in the console
+    show-sql: true
+
+
+#  modulith:
+#    events:
+#      jdbc:
+#        schema-initialization:
+#          enabled: true
+
+
+logging:
+  level:
+    org.springframework.modulith: DEBUG
+    org.hibernate.stat: DEBUG #activte hibernate stats
+    org.hibernate.engine.internal.StatisticalLoggingSessionEventListener: INFO #activate hibernate stats
