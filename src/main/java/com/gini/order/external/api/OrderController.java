@@ -1,4 +1,4 @@
-package com.gini.order.external;
+package com.gini.order.external.api;
 
 import com.gini.generated.car.api.OrderApi;
 import com.gini.generated.car.model.GetOrderResponse;

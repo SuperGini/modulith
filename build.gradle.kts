@@ -207,7 +207,7 @@ val carTaskName = project.property("carTask") as String
 val customerTaskName = project.property("customerTask") as String
 
 tasks.named("compileJava") {
-    dependsOn(carTaskName, customerTaskName)
+    dependsOn(carTaskName)
     sourceSets {
         main {
             java.srcDir(layout.buildDirectory.dir("generated/src/main/java"))

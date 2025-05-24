@@ -4,6 +4,7 @@ import com.gini.generated.car.model.OrderRequest;
 import com.gini.generated.car.model.OrderResponse;
 import com.gini.order.internal.domain.repositories.OrderRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,9 +13,11 @@ import org.springframework.transaction.annotation.Transactional;
 public class CustomerOrderService {
 
     private final OrderRepository orderRepository;
+    private final ApplicationEventPublisher eventPublisher;
 
     @Transactional
     public OrderResponse createOrder(OrderRequest orderRequest) {
+
 
 
 

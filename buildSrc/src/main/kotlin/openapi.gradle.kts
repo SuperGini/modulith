@@ -26,7 +26,7 @@ val customerTaskName = project.property("customerTask") as String
 
 val openApiFiles = listOf(
     "src/main/resources/openapi/openapi.yaml" to carTaskName, //Added names for the openapi files
-    "src/main/resources/openapi/openapi.yaml" to customerTaskName
+//    "src/main/resources/openapi/openapi.yaml" to customerTaskName
     // Add more OpenAPI file paths here as needed.  Make sure the paths are correct.
 )
 
