@@ -1,8 +1,9 @@
-package com.gini.customer.external.api;
+package com.gini.customer.external.api.controllers;
 
-import com.gini.customer.internal.services.CustomerService;
-import com.gini.generated.car.api.CustomerApi;
-import com.gini.generated.car.model.CustomerRequest;
+import com.gini.customer.external.api.generated.api.CustomerApi;
+import com.gini.customer.external.api.generated.model.CustomerRequest;
+import com.gini.customer.internal.services.CustomerServiceImpl;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class CustomerController implements CustomerApi {
 
-    private final CustomerService customerService;
+    private final CustomerServiceImpl customerService;
 
     @Override
     public void createCustomer(CustomerRequest customerRequest) {

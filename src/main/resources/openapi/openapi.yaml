@@ -394,10 +394,10 @@ components:
         - date
       properties:
         number:
-          type: string
-          format: UUID
+          type: number
+          format: int64
           description: represents the order number
-          example: c44cfca0-95b8-4ed1-b7b8-ea1b840ec40d
+          example: 123
         customerName:
           type: string
           description: name of the customer
@@ -475,10 +475,10 @@ components:
         - vin
       properties:
         number:
-          type: string
-          format: UUID
+          type: number
+          format: int64
           description: represents the order number
-          example: c44cfca0-95b8-4ed1-b7b8-ea1b840ec40d
+          example: 123
         customerName:
           type: string
           description: name of the customer

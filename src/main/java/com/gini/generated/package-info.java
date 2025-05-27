@@ -1,4 +1,4 @@
-@ApplicationModule(type = Type.OPEN)
+//@ApplicationModule(type = Type.OPEN)
 
 package com.gini.generated;
 

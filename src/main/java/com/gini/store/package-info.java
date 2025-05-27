@@ -1,4 +1,4 @@
-@org.springframework.modulith.ApplicationModule(
-        allowedDependencies = {"order::events", "generated::api", "generated::model"}
-)
+//@org.springframework.modulith.ApplicationModule(
+//        allowedDependencies = {"order::events"}
+//)
 package com.gini.store;

@@ -1,8 +1,9 @@
 package com.gini.car.internal.mappers;
 
+import com.gini.car.external.api.generated.model.CarRequest;
 import com.gini.car.internal.domain.entities.Car;
 import com.gini.car.internal.domain.entities.Constructor;
-import com.gini.generated.car.model.CarRequest;
+
 import org.springframework.stereotype.Component;
 
 @Component

@@ -1,9 +1,10 @@
-package com.gini.order.external.api;
+package com.gini.order.external.api.controllers;
 
-import com.gini.generated.car.api.OrderApi;
-import com.gini.generated.car.model.GetOrderResponse;
-import com.gini.generated.car.model.OrderRequest;
-import com.gini.generated.car.model.OrderResponse;
+
+import com.gini.order.external.api.generated.api.OrderApi;
+import com.gini.order.external.api.generated.model.GetOrderResponse;
+import com.gini.order.external.api.generated.model.OrderRequest;
+import com.gini.order.external.api.generated.model.OrderResponse;
 import com.gini.order.internal.services.CustomerOrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,6 +24,6 @@ public class OrderController implements OrderApi {
 
     @Override
     public List<GetOrderResponse> getAllOrders(Long customerId) {
-        return List.of();
+        return customerOrderService.getOrder(customerId);
     }
 }

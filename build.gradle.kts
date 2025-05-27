@@ -205,12 +205,14 @@ val openApiFiles = listOf(
 //}
 val carTaskName = project.property("carTask") as String
 val customerTaskName = project.property("customerTask") as String
+val orderTaskName = project.property("orderTask") as String
+val storeTaskName = project.property("storeTask") as String
 
 tasks.named("compileJava") {
-    dependsOn(carTaskName)
-    sourceSets {
-        main {
-            java.srcDir(layout.buildDirectory.dir("generated/src/main/java"))
-        }
-    }
+    dependsOn(carTaskName, customerTaskName, orderTaskName, storeTaskName)
+//    sourceSets {
+//        main {
+//            java.srcDir(project.projectDir.resolve("src/main/java"))
+//        }
+//    }
 }
