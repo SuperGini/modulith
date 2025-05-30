@@ -2,6 +2,7 @@ package com.gini.order.internal.services;
 
 
 import com.gini.customer.external.interfaces.CustomerService;
+import com.gini.customer.external.interfaces.dto.CustomerResponse;
 import com.gini.order.external.api.generated.model.GetOrderPartResponse;
 import com.gini.order.external.api.generated.model.GetOrderResponse;
 import com.gini.order.external.api.generated.model.OrderPartResponse;
@@ -10,8 +11,10 @@ import com.gini.order.external.api.generated.model.OrderResponse;
 import com.gini.order.internal.domain.entities.CustomerOrder;
 import com.gini.order.internal.domain.entities.PartOrder;
 import com.gini.order.internal.domain.repositories.OrderRepository;
+import com.gini.order.internal.publisher.store.StorePublisher;
 import com.gini.store.external.interfaces.PartService;
 import com.gini.store.external.listeners.events.OrderPartRequestEvent;
+import com.gini.store.external.listeners.events.OrderPartRequestWrapperEvent;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
@@ -25,7 +28,7 @@ import java.util.List;
 public class CustomerOrderService {
 
     private final OrderRepository orderRepository;
-    private final ApplicationEventPublisher eventPublisher;
+    private final StorePublisher storePublisher;
     private final CustomerService customerService;
     private final PartService partService;
 
@@ -38,27 +41,11 @@ public class CustomerOrderService {
                 .map(part -> new OrderPartRequestEvent(part.getPartNumber(), part.getQuantity()))
                 .toList();
 
-        eventPublisher.publishEvent(partsList);
 
+        storePublisher.updatePartsInStore(new OrderPartRequestWrapperEvent(partsList));
 
-        var partsOrder = orderRequest.getParts().stream()
-                .map(part -> PartOrder.builder()
-                        .partNumber(part.getPartNumber())
-                        .quantity(part.getQuantity())
-                        .build()
-
-                )
-                .toList();
-
-
-        var newCustomerOrder = CustomerOrder.builder()
-                .customerId(customer.id())
-                .vin(orderRequest.getVin())
-                .parts(partsOrder)
-                .build();
-
+        var newCustomerOrder = mapToCustomerOrderEntity(orderRequest, customer);
         var customerOrderDb = orderRepository.save(newCustomerOrder);
-
 
         var partsListResponse = orderRequest.getParts().stream()
                 .map(part -> new OrderPartResponse(part.getPartNumber(), part.getQuantity()))
@@ -71,6 +58,7 @@ public class CustomerOrderService {
                 .customerName(customer.name())
                 .number(new BigDecimal(customerOrderDb.getId()));
     }
+
 
     @Transactional
     public List<GetOrderResponse> getOrder(long customerId) {
@@ -95,6 +83,24 @@ public class CustomerOrderService {
 
                 ).toList();
 
+    }
+
+
+    private CustomerOrder mapToCustomerOrderEntity(OrderRequest orderRequest, CustomerResponse customer) {
+        var newCustomerOrder = new CustomerOrder();
+        newCustomerOrder.setCustomerId(customer.id());
+        newCustomerOrder.setVin(orderRequest.getVin());
+
+        orderRequest.getParts()
+                .forEach(part -> {
+                            var partOrder = PartOrder.builder()
+                                    .partNumber(part.getPartNumber())
+                                    .quantity(part.getQuantity())
+                                    .build();
+                            newCustomerOrder.addPart(partOrder);
+                        }
+                );
+        return newCustomerOrder;
     }
 
 

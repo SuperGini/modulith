@@ -1,5 +1,6 @@
 package com.gini.order.internal.domain.entities;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -31,8 +32,14 @@ public class CustomerOrder {
     private Long customerId;
     private String vin;
 
-    @OneToMany(mappedBy = "customersOrders")
+    @OneToMany(mappedBy = "customersOrders", cascade = CascadeType.PERSIST)
     private List<PartOrder> parts = new ArrayList<>();
+
+
+    public void addPart(PartOrder partOrder) {
+        parts.add(partOrder);
+        partOrder.setCustomersOrders(this);
+    }
 
 
     @Override
