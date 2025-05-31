@@ -1,6 +1,8 @@
 package com.gini.store.internal.services;
 
 
+import com.gini.error.exceptions.NegativeQuantityException;
+import com.gini.error.exceptions.NotFoundException;
 import com.gini.store.external.api.generated.model.PartRequest;
 import com.gini.store.external.api.generated.model.PartResponse;
 import com.gini.store.external.api.generated.model.PartUpdateRequest;
@@ -39,14 +41,14 @@ public class PartServiceImpl implements PartService {
     public PartResponse findByPartNumber(String partNumber) {
         return partRepository.findByPartNumber(partNumber)
                 .map(PartServiceImpl::maToPartResponse)
-                .orElseThrow(() -> new RuntimeException("Part not found"));
+                .orElseThrow(() -> new NotFoundException("Part not found"));
     }
 
     @Transactional
     @Override
     public Part updatePartQuantity(PartUpdateRequest partUpdateRequest) {
         var part = partRepository.findByPartNumber(partUpdateRequest.getPartNumber())
-                .orElseThrow(() -> new RuntimeException("Part not found"));
+                .orElseThrow(() -> new NotFoundException("Part not found"));
 
         var qty = part.getQuantity() + partUpdateRequest.getQuantity();
         part.setQuantity(qty);
@@ -61,11 +63,11 @@ public class PartServiceImpl implements PartService {
                 .forEach(partOrder -> {
 
                     var part = partRepository.findByPartNumber(partOrder.partNumber())
-                            .orElseThrow(() -> new RuntimeException("Part not found"));
+                            .orElseThrow(() -> new NotFoundException("Part not found"));
 
                     var qty = part.getQuantity() - partOrder.quantity();
 
-                    if (qty < 0) throw new RuntimeException("Quantity is negative");
+                    if (qty < 0) throw new NegativeQuantityException("Order quantity is bigger thant the parts in stock");
 
                     part.setQuantity(qty);
                     partRepository.save(part);
