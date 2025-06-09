@@ -38,3 +38,5 @@ src/main/java/com/gini/car/external/api/generated
 src/main/java/com/gini/order/external/api/generated
 src/main/java/com/gini/customer/external/api/generated
 src/main/java/com/gini/store/external/api/generated
+angular/.npmrc
+text
