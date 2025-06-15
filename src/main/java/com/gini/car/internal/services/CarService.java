@@ -1,10 +1,10 @@
 package com.gini.car.internal.services;
 
-import com.gini.car.external.api.generated.model.CarRequest;
 import com.gini.car.internal.domain.entities.Car;
 import com.gini.car.internal.domain.repositories.CarRepository;
 import com.gini.car.internal.domain.repositories.ConstructorRepository;
 import com.gini.car.internal.mappers.CarMapper;
+import com.gini.car_module_openapi.model.CarRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

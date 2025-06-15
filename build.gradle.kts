@@ -59,6 +59,18 @@ configurations {
 
 repositories {
     mavenCentral()
+
+    maven {
+        url = uri("https://gitlab.com/api/v4/projects/70539492/packages/maven")
+        name = "GitLab"
+        credentials(HttpHeaderCredentials::class) {
+            name = "Private-Token"
+            value =  project.property("token") as String
+        }
+        authentication {
+            create("header", HttpHeaderAuthentication::class)
+        }
+    }
 }
 
 extra["springModulithVersion"] = "1.3.5"
@@ -80,6 +92,9 @@ dependencies {
     //need this dependencies for openapi generator
     implementation("io.swagger.core.v3:swagger-annotations-jakarta:2.2.30")
     implementation("org.openapitools:jackson-databind-nullable:0.2.6")
+
+    implementation("com.gini:car-module-openapi:1.0.36")
+    implementation("com.gini:order-module-openapi:1.0.36")
 
 }
 
@@ -208,11 +223,11 @@ val customerTaskName = project.property("customerTask") as String
 val orderTaskName = project.property("orderTask") as String
 val storeTaskName = project.property("storeTask") as String
 
-tasks.named("compileJava") {
-    dependsOn(carTaskName, customerTaskName, orderTaskName, storeTaskName)
+//tasks.named("compileJava") {
+//    dependsOn(carTaskName, customerTaskName, orderTaskName, storeTaskName)
 //    sourceSets {
 //        main {
 //            java.srcDir(project.projectDir.resolve("src/main/java"))
 //        }
 //    }
-}
+//}

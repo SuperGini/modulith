@@ -1,12 +1,15 @@
 package com.gini.car.external.api.controllers;
 
-import com.gini.car.external.api.generated.api.CarApi;
-import com.gini.car.external.api.generated.model.CarRequest;
-import com.gini.car.external.api.generated.model.ConstructorRequest;
-import com.gini.car.internal.services.CarService;
-import com.gini.car.internal.services.ConstructorService;
 
+import com.gini.car.internal.services.CarService;
+
+
+import com.gini.car.internal.services.ConstructorService;
+import com.gini.car_module_openapi.api.CarApi;
+import com.gini.car_module_openapi.model.CarRequest;
+import com.gini.car_module_openapi.model.ConstructorRequest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController

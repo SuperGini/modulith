@@ -40,3 +40,4 @@ src/main/java/com/gini/customer/external/api/generated
 src/main/java/com/gini/store/external/api/generated
 angular/.npmrc
 text
+gradle.properties
