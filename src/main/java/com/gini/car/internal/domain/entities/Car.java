@@ -1,6 +1,5 @@
 package com.gini.car.internal.domain.entities;
 
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -9,13 +8,12 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
+import java.util.Objects;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.Objects;
 
 @Builder
 @Getter
@@ -25,13 +23,13 @@ import java.util.Objects;
 @AllArgsConstructor
 public class Car {
 
-    //https://www.postgresql.org/message-id/YVQxL6YWXxhQwcft%40hjp.at -> 1 sequence for all tables
-
+    // https://www.postgresql.org/message-id/YVQxL6YWXxhQwcft%40hjp.at -> 1 sequence for all tables
 
     @Id
     @GeneratedValue(generator = "sequence", strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name = "sequence", sequenceName = "sequence", allocationSize = 10)
     private Long id;
+
     private String vin;
     private String name;
 

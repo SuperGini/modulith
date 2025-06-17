@@ -14,7 +14,5 @@ class StoreArchTest {
     void testArchOfModule() {
         System.out.println(modules.toString());
         var x = modules.verify();
-
     }
-
 }

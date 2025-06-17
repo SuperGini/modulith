@@ -1,6 +1,5 @@
 package com.gini.store.external.api.controllers;
 
-
 import com.gini.store.external.api.generated.api.StoreApi;
 import com.gini.store.external.api.generated.model.PartRequest;
 import com.gini.store.external.api.generated.model.PartResponse;
@@ -29,11 +28,11 @@ public class PartController implements StoreApi {
     @Override
     public PartUpdateResponse updatePartQuantity(PartUpdateRequest partUpdateRequest) {
 
-       var updatedPart =  partService.updatePartQuantity(partUpdateRequest);
+        var updatedPart = partService.updatePartQuantity(partUpdateRequest);
 
-       return new PartUpdateResponse()
-               .partNumber(updatedPart.getPartNumber())
-               .name(updatedPart.getName())
-               .quantity(updatedPart.getQuantity().toString());
+        return new PartUpdateResponse()
+                .partNumber(updatedPart.getPartNumber())
+                .name(updatedPart.getName())
+                .quantity(updatedPart.getQuantity().toString());
     }
 }

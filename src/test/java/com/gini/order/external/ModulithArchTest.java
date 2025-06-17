@@ -8,16 +8,11 @@ import org.springframework.modulith.test.ApplicationModuleTest;
 @ApplicationModuleTest(ApplicationModuleTest.BootstrapMode.DIRECT_DEPENDENCIES)
 class ModulithArchTest {
 
-
-    ApplicationModules  modules = ApplicationModules.of(ModulithAutoApplication.class);
+    ApplicationModules modules = ApplicationModules.of(ModulithAutoApplication.class);
 
     @Test
     void testArchOfModul() {
         System.out.println(modules.toString());
         var x = modules.verify();
-
     }
-
-
-
 }

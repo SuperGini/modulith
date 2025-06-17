@@ -11,9 +11,7 @@ public interface PartService {
 
     void createPart(PartRequest partRequest);
 
-
     PartResponse findByPartNumber(String partNumber);
-
 
     Part updatePartQuantity(PartUpdateRequest partUpdateRequest);
 }

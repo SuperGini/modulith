@@ -25,10 +25,9 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public CustomerResponse findById(Long customerId) {
 
-        return customerRepository.findById(customerId)
+        return customerRepository
+                .findById(customerId)
                 .map(customer -> new CustomerResponse(customer.getId(), customer.getName()))
                 .orElseThrow(() -> new RuntimeException("Customer not found"));
-
     }
-
 }

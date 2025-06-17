@@ -6,8 +6,6 @@ import org.springframework.modulith.core.ApplicationModules;
 import org.springframework.modulith.docs.Documenter;
 import org.springframework.modulith.test.ApplicationModuleTest;
 
-
-
 @ApplicationModuleTest
 class ErrorModuleArchTest {
 
@@ -21,10 +19,6 @@ class ErrorModuleArchTest {
     void writeDocumentation() {
         var module = ApplicationModules.of(ModulithAutoApplication.class);
 
-        new Documenter(module)
-                .writeModulesAsPlantUml()
-                .writeIndividualModulesAsPlantUml();
+        new Documenter(module).writeModulesAsPlantUml().writeIndividualModulesAsPlantUml();
     }
-
-
 }

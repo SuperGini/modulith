@@ -1,21 +1,19 @@
 package com.gini.car.internal.domain.entities;
 
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
 @Builder
 @Getter
@@ -29,6 +27,7 @@ public class Constructor {
     @GeneratedValue(generator = "sequence", strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name = "sequence", sequenceName = "sequence", allocationSize = 10)
     private Long id;
+
     private String name;
 
     @OneToMany(mappedBy = "constructor")

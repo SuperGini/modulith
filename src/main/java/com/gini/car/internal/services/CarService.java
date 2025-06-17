@@ -22,16 +22,18 @@ public class CarService {
     public void save(CarRequest carRequest) {
         var constructorName = carRequest.getConstructor().getName();
 
-       var constructor =  constructorRepository.findByName(constructorName)
-               .orElseThrow(() -> new RuntimeException(" Car constructor not found"));
+        var constructor =
+                constructorRepository
+                        .findByName(constructorName)
+                        .orElseThrow(() -> new RuntimeException(" Car constructor not found"));
 
-       var car = Car.builder()
-               .vin(carRequest.getVin())
-               .name(carRequest.getName())
-               .constructor(constructor)
-               .build();
+        var car =
+                Car.builder()
+                        .vin(carRequest.getVin())
+                        .name(carRequest.getName())
+                        .constructor(constructor)
+                        .build();
 
         carRepository.save(car);
     }
-
 }

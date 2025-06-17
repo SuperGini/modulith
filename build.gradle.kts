@@ -2,49 +2,59 @@ plugins {
     java
     id("org.springframework.boot") version "3.4.5"
     id("io.spring.dependency-management") version "1.1.7"
-//    id("org.openapi.generator") version "7.13.0"
-    id("openapi")
-//    id("com.gini.xxx.dostuf")
-
-
+    id("com.diffplug.spotless") version "7.0.4"
+//    id("openapi")
 }
-
-//apply(plugin = "org.openapi.generator")
 
 group = "com.gini"
 version = "0.0.1-SNAPSHOT"
-// Generate OpenAPI code for each file
-//openApiFiles.forEach { (filePath, name) ->
-//    generateOpenApi(
-//        "generate${name}Api", // Unique task name for each file.
-//        file(filePath).absolutePath,  // Use the absolute path
-//        "com.example.${name.lowercase()}.api", // Unique package for each.
-//        "com.example.${name.lowercase()}.model",
-////        mapOf(
-////            "apis" to name, // Generate API for the specific tag.
-////        ),
-//        mapOf(
-//            "interfaceOnly" to "true",
-//            "useSpringBoot3" to "true",
-//            "dateLibrary" to "java8",
-//            "useTags" to "true",
-//            "skipDefaultInterface" to "true",
-//            "useResponseEntity" to "false",
-//            "useJakartaEe" to "true"
-//        )
-//    )
-//}
 
-// Configure the compileJava task to depend on all OpenAPI generation tasks.
-//val allOpenApiTaskNames = openApiFiles.map { "generate${it.second}Api" }  // Correct task name.
-//tasks.named("compileJava") {
-//    dependsOn(allOpenApiTaskNames)
-//    sourceSets {
-//        main {
-//            java.srcDir(layout.buildDirectory.dir("generated/src/main/java"))
-//        }
+//spotless {
+//    java {
+//        // Use the default importOrder configuration
+//        importOrder()
+//        // optional: you can specify import groups directly
+//        // note: you can use an empty string for all the imports you didn't specify explicitly, '|' to join group without blank line, and '\\#` prefix for static imports
+////        importOrder('java|javax', 'com.acme', '', '\\#com.acme', '\\#')
+//        // optional: instead of specifying import groups directly you can specify a config file
+//        // export config file: https://github.com/diffplug/spotless/blob/main/ECLIPSE_SCREENSHOTS.md#creating-spotlessimportorder
+//        importOrderFile("eclipse-import-order.txt") // import order file as exported from eclipse
+//
+//        removeUnusedImports()
+//
+//        // Cleanthat will refactor your code, but it may break your style: apply it before your formatter
+//        cleanthat()          // has its own section below
+//
+//        // Choose one of these formatters.
+//        googleJavaFormat()   // has its own section below
+//        eclipse()            // has its own section below
+//        prettier()           // has its own section below
+//        clangFormat()        // has its own section below
+//
+//        formatAnnotations()  // fixes formatting of type annotations, see below
+//
 //    }
 //}
+
+spotless {
+    java {
+        // Use the default importOrder configuration
+        importOrder()
+        removeUnusedImports()
+        // Cleanthat will refactor your code, but it may break your style: apply it before your formatter
+        cleanthat()          // has its own section below
+
+        // Choose one of these formatters. Uncomment the one you want to use.
+         googleJavaFormat("1.27.0").aosp()   // has its own section below
+
+
+
+        formatAnnotations()  // fixes formatting of type annotations, see below
+
+    }
+}
+
+
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)
@@ -88,7 +98,6 @@ dependencies {
     testImplementation("org.springframework.modulith:spring-modulith-starter-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
-
     //need this dependencies for openapi generator
     implementation("io.swagger.core.v3:swagger-annotations-jakarta:2.2.30")
     implementation("org.openapitools:jackson-databind-nullable:0.2.6")
@@ -107,6 +116,39 @@ dependencyManagement {
 tasks.withType<Test> {
     useJUnitPlatform()
 }
+
+// Generate OpenAPI code for each file
+//openApiFiles.forEach { (filePath, name) ->
+//    generateOpenApi(
+//        "generate${name}Api", // Unique task name for each file.
+//        file(filePath).absolutePath,  // Use the absolute path
+//        "com.example.${name.lowercase()}.api", // Unique package for each.
+//        "com.example.${name.lowercase()}.model",
+////        mapOf(
+////            "apis" to name, // Generate API for the specific tag.
+////        ),
+//        mapOf(
+//            "interfaceOnly" to "true",
+//            "useSpringBoot3" to "true",
+//            "dateLibrary" to "java8",
+//            "useTags" to "true",
+//            "skipDefaultInterface" to "true",
+//            "useResponseEntity" to "false",
+//            "useJakartaEe" to "true"
+//        )
+//    )
+//}
+
+// Configure the compileJava task to depend on all OpenAPI generation tasks.
+//val allOpenApiTaskNames = openApiFiles.map { "generate${it.second}Api" }  // Correct task name.
+//tasks.named("compileJava") {
+//    dependsOn(allOpenApiTaskNames)
+//    sourceSets {
+//        main {
+//            java.srcDir(layout.buildDirectory.dir("generated/src/main/java"))
+//        }
+//    }
+//}
 
 
 // configuration properties: https://openapi-generator.tech/docs/generators/spring/
@@ -177,11 +219,11 @@ tasks.withType<Test> {
 
 
 // List of OpenAPI specification files
-val openApiFiles = listOf(
-    "src/main/resources/openapi/openapi.yaml" to "Car", //Added names for the openapi files
-    "src/main/resources/openapi/openapi.yaml" to "Customer"
-    // Add more OpenAPI file paths here as needed.  Make sure the paths are correct.
-)
+//val openApiFiles = listOf(
+//    "src/main/resources/openapi/openapi.yaml" to "Car", //Added names for the openapi files
+//    "src/main/resources/openapi/openapi.yaml" to "Customer"
+//    // Add more OpenAPI file paths here as needed.  Make sure the paths are correct.
+//)
 
 
 
@@ -218,10 +260,10 @@ val openApiFiles = listOf(
 //        }
 //    }
 //}
-val carTaskName = project.property("carTask") as String
-val customerTaskName = project.property("customerTask") as String
-val orderTaskName = project.property("orderTask") as String
-val storeTaskName = project.property("storeTask") as String
+//val carTaskName = project.property("carTask") as String
+//val customerTaskName = project.property("customerTask") as String
+//val orderTaskName = project.property("orderTask") as String
+//val storeTaskName = project.property("storeTask") as String
 
 //tasks.named("compileJava") {
 //    dependsOn(carTaskName, customerTaskName, orderTaskName, storeTaskName)

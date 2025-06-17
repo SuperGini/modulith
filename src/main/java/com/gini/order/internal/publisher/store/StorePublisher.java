@@ -14,5 +14,4 @@ public class StorePublisher {
     public void updatePartsInStore(OrderPartRequestWrapperEvent event) {
         publisher.publishEvent(event);
     }
-
 }

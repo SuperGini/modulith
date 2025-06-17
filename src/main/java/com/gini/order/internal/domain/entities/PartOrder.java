@@ -6,13 +6,12 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
+import java.util.Objects;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.Objects;
 
 @Builder
 @Getter
@@ -26,11 +25,11 @@ public class PartOrder {
     @GeneratedValue(generator = "sequence", strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name = "sequence", sequenceName = "sequence", allocationSize = 10)
     private Long id;
+
     private String partNumber;
     private Integer quantity;
 
-    @ManyToOne
-    private CustomerOrder customersOrders;
+    @ManyToOne private CustomerOrder customersOrders;
 
     @Override
     public boolean equals(Object o) {

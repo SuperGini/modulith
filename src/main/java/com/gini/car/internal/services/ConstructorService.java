@@ -1,9 +1,8 @@
 package com.gini.car.internal.services;
 
-import com.gini.car.external.api.generated.model.ConstructorRequest;
 import com.gini.car.internal.domain.entities.Constructor;
 import com.gini.car.internal.domain.repositories.ConstructorRepository;
-
+import com.gini.car_module_openapi.model.ConstructorRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,10 +16,8 @@ public class ConstructorService {
     @Transactional
     public void createConstructor(ConstructorRequest constructorRequest) {
         var name = constructorRequest.getName();
-        var constructor =  new Constructor();
+        var constructor = new Constructor();
         constructor.setName(name);
         constructorRepository.save(constructor);
-
     }
-
 }

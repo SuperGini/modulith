@@ -1,12 +1,7 @@
 package com.gini.store.external.listeners.events;
 
+import java.util.List;
 import org.springframework.modulith.NamedInterface;
 
-import java.util.List;
-
 @NamedInterface("orderPartRequestWrapperEvent")
-public record OrderPartRequestWrapperEvent(
-        List<OrderPartRequestEvent> pertEvents
-
-) {
-}
+public record OrderPartRequestWrapperEvent(List<OrderPartRequestEvent> pertEvents) {}
