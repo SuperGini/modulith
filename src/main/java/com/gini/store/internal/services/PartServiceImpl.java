@@ -1,10 +1,10 @@
 package com.gini.store.internal.services;
 
+import com.gini.car_module_openapi.model.PartRequest;
+import com.gini.car_module_openapi.model.PartResponse;
+import com.gini.car_module_openapi.model.PartUpdateRequest;
 import com.gini.error.exceptions.NegativeQuantityException;
 import com.gini.error.exceptions.NotFoundException;
-import com.gini.store.external.api.generated.model.PartRequest;
-import com.gini.store.external.api.generated.model.PartResponse;
-import com.gini.store.external.api.generated.model.PartUpdateRequest;
 import com.gini.store.external.interfaces.PartService;
 import com.gini.store.external.listeners.events.OrderPartRequestEvent;
 import com.gini.store.internal.domain.entities.Part;

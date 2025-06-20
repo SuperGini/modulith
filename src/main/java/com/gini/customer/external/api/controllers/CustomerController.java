@@ -1,7 +1,7 @@
 package com.gini.customer.external.api.controllers;
 
-import com.gini.customer.external.api.generated.api.CustomerApi;
-import com.gini.customer.external.api.generated.model.CustomerRequest;
+import com.gini.car_module_openapi.api.CustomerApi;
+import com.gini.car_module_openapi.model.CustomerRequest;
 import com.gini.customer.internal.services.CustomerServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RestController;

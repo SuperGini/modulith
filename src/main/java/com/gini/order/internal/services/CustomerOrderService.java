@@ -1,12 +1,12 @@
 package com.gini.order.internal.services;
 
+import com.gini.car_module_openapi.model.GetOrderPartResponse;
+import com.gini.car_module_openapi.model.GetOrderResponse;
+import com.gini.car_module_openapi.model.OrderPartResponse;
+import com.gini.car_module_openapi.model.OrderRequest;
+import com.gini.car_module_openapi.model.OrderResponse;
 import com.gini.customer.external.interfaces.CustomerService;
 import com.gini.customer.external.interfaces.dto.CustomerResponse;
-import com.gini.order.external.api.generated.model.GetOrderPartResponse;
-import com.gini.order.external.api.generated.model.GetOrderResponse;
-import com.gini.order.external.api.generated.model.OrderPartResponse;
-import com.gini.order.external.api.generated.model.OrderRequest;
-import com.gini.order.external.api.generated.model.OrderResponse;
 import com.gini.order.internal.domain.entities.CustomerOrder;
 import com.gini.order.internal.domain.entities.PartOrder;
 import com.gini.order.internal.domain.repositories.OrderRepository;

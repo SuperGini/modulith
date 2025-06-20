@@ -1,8 +1,8 @@
 package com.gini.store.external.interfaces;
 
-import com.gini.store.external.api.generated.model.PartRequest;
-import com.gini.store.external.api.generated.model.PartResponse;
-import com.gini.store.external.api.generated.model.PartUpdateRequest;
+import com.gini.car_module_openapi.model.PartRequest;
+import com.gini.car_module_openapi.model.PartResponse;
+import com.gini.car_module_openapi.model.PartUpdateRequest;
 import com.gini.store.internal.domain.entities.Part;
 import org.springframework.modulith.NamedInterface;
 

@@ -1,6 +1,6 @@
 package com.gini.customer.internal.services;
 
-import com.gini.customer.external.api.generated.model.CustomerRequest;
+import com.gini.car_module_openapi.model.CustomerRequest;
 import com.gini.customer.external.interfaces.CustomerService;
 import com.gini.customer.external.interfaces.dto.CustomerResponse;
 import com.gini.customer.internal.domain.entities.Customer;

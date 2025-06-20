@@ -1,10 +1,10 @@
 package com.gini.store.external.api.controllers;
 
-import com.gini.store.external.api.generated.api.StoreApi;
-import com.gini.store.external.api.generated.model.PartRequest;
-import com.gini.store.external.api.generated.model.PartResponse;
-import com.gini.store.external.api.generated.model.PartUpdateRequest;
-import com.gini.store.external.api.generated.model.PartUpdateResponse;
+import com.gini.car_module_openapi.api.StoreApi;
+import com.gini.car_module_openapi.model.PartRequest;
+import com.gini.car_module_openapi.model.PartResponse;
+import com.gini.car_module_openapi.model.PartUpdateRequest;
+import com.gini.car_module_openapi.model.PartUpdateResponse;
 import com.gini.store.internal.services.PartServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RestController;

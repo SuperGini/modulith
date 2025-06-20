@@ -1,69 +1,32 @@
 plugins {
     java
-    id("org.springframework.boot") version "3.4.5"
+    id("org.springframework.boot") version "3.5.3"
     id("io.spring.dependency-management") version "1.1.7"
     id("com.diffplug.spotless") version "7.0.4"
 //    id("openapi")
+    checkstyle
 }
 
 group = "com.gini"
 version = "0.0.1-SNAPSHOT"
 
-//spotless {
-//    java {
-//        // Use the default importOrder configuration
-//        importOrder()
-//        // optional: you can specify import groups directly
-//        // note: you can use an empty string for all the imports you didn't specify explicitly, '|' to join group without blank line, and '\\#` prefix for static imports
-////        importOrder('java|javax', 'com.acme', '', '\\#com.acme', '\\#')
-//        // optional: instead of specifying import groups directly you can specify a config file
-//        // export config file: https://github.com/diffplug/spotless/blob/main/ECLIPSE_SCREENSHOTS.md#creating-spotlessimportorder
-//        importOrderFile("eclipse-import-order.txt") // import order file as exported from eclipse
-//
-//        removeUnusedImports()
-//
-//        // Cleanthat will refactor your code, but it may break your style: apply it before your formatter
-//        cleanthat()          // has its own section below
-//
-//        // Choose one of these formatters.
-//        googleJavaFormat()   // has its own section below
-//        eclipse()            // has its own section below
-//        prettier()           // has its own section below
-//        clangFormat()        // has its own section below
-//
-//        formatAnnotations()  // fixes formatting of type annotations, see below
-//
-//    }
-//}
-
 spotless {
     java {
-        // Use the default importOrder configuration
         importOrder()
         removeUnusedImports()
-        // Cleanthat will refactor your code, but it may break your style: apply it before your formatter
-        cleanthat()          // has its own section below
-
-        // Choose one of these formatters. Uncomment the one you want to use.
-         googleJavaFormat("1.27.0").aosp()   // has its own section below
-
-
-
+        googleJavaFormat("1.27.0").aosp().reflowLongStrings().skipJavadocFormatting()
         formatAnnotations()  // fixes formatting of type annotations, see below
-
     }
+}
+
+checkstyle {
+    configFile = file("./checkstyle.xml")
 }
 
 
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)
-    }
-}
-
-configurations {
-    compileOnly {
-        extendsFrom(configurations.annotationProcessor.get())
     }
 }
 
@@ -224,8 +187,6 @@ tasks.withType<Test> {
 //    "src/main/resources/openapi/openapi.yaml" to "Customer"
 //    // Add more OpenAPI file paths here as needed.  Make sure the paths are correct.
 //)
-
-
 
 
 // Generate OpenAPI code for each file
